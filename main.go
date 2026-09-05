@@ -34,7 +34,7 @@ func main() {
 		apikey := os.Getenv("APIKEY")
 		model := "mistral-tiny"
 		client := New(apikey, model)
-		res, err := client.message(prompt)
+		res, err := client.chatMessage(prompt)
 		if err != nil {
 			log.Println("error:", err)
 		}
