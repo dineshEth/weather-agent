@@ -18,7 +18,7 @@ func main() {
 	// }
 
 	// fmt.Println(city, ":", data)
-	for {
+	for false {
 		scanner := bufio.NewScanner(os.Stdin)
 		fmt.Print("user: ")
 		scanner.Scan()
@@ -41,4 +41,9 @@ func main() {
 
 		fmt.Println("assistant:", res.Choices[0].Message.Content)
 	}
+}
+
+func readFile(path string) (string, error) {
+	bytes, err := os.ReadFile(path)
+	return string(bytes), err
 }
