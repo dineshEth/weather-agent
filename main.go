@@ -38,5 +38,9 @@ func main() {
 
 func readFile(path string) (string, error) {
 	bytes, err := os.ReadFile(path)
-	return string(bytes), err
+	if err != nil {
+		return "", err
+	}
+
+	return string(bytes), nil
 }
