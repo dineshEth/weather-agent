@@ -1,1 +1,16 @@
-Hello World
+HTTP Status Codes
+200 : OK — Request successful
+201 : Created — Resource created successfully
+202 : Accepted — Request accepted for processing
+204 : No Content — Successful request with no response body
+301 : Moved Permanently — Resource permanently moved
+302 : Found — Resource temporarily moved
+304 : Not Modified — Resource has not changed
+400 : Bad Request — Invalid request
+401 : Unauthorized — Authentication required/failed
+403 : Forbidden — Access denied
+404 : Not Found — Resource not found
+405 : Method Not Allowed — HTTP method is not supported
+409 : Conflict — Request conflicts with current state
+500 : Internal Server Error — Server encountered an error
+503 : Service Unavailable — Server temporarily unavailable
