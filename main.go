@@ -8,18 +8,7 @@ import (
 	"strings"
 
 	"github.com/joho/godotenv"
-	// "log"
-	// "os"
-	// "strings"
-	// "github.com/joho/godotenv"
-	// "log"
 )
-
-// "fmt"
-// "log"
-// "os"
-
-// "github.com/joho/godotenv"
 
 func main() {
 	// city := "london"
@@ -30,7 +19,6 @@ func main() {
 
 	// fmt.Println(city, ":", data)
 	for {
-
 		scanner := bufio.NewScanner(os.Stdin)
 		fmt.Print("user: ")
 		scanner.Scan()
