@@ -1,3 +1,7 @@
+package main
+
+import "os"
+
 func readFile(path string) (string, error) {
 	bytes, err := os.ReadFile(path)
 	if err != nil {
