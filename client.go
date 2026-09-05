@@ -12,6 +12,8 @@ type Client struct {
 	MistralClient *mistral.MistralClient
 }
 
+var History = make([]mistral.ChatMessage, 0)
+
 func New(apiKey string, modelString string) *Client {
 	return &Client{
 		Model:         modelString,
@@ -20,14 +22,22 @@ func New(apiKey string, modelString string) *Client {
 }
 
 func (c *Client) message(prompt string) (*mistral.ChatCompletionResponse, error) {
-	return c.MistralClient.Chat(
+	History = append(History, mistral.ChatMessage{
+		Role:    "user",
+		Content: prompt,
+	})
+	res, err := c.MistralClient.Chat(
 		c.Model,
-		[]mistral.ChatMessage{
-			{
-				Content: prompt,
-				Role:    "user",
-			},
-		},
+		History,
 		nil,
 	)
+	if err != nil {
+		return nil, err
+	}
+	History = append(History, mistral.ChatMessage{
+		Role:    res.Choices[0].Message.Role,
+		Content: res.Choices[0].Message.Content,
+	})
+
+	return res, nil
 }
