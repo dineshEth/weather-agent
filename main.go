@@ -39,7 +39,7 @@ func main() {
 			log.Println("error:", err)
 		}
 
-		fmt.Println("assistant:", res.Choices[0].Message.Content)
+		fmt.Println("assistant:", res)
 	}
 }
 

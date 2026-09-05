@@ -21,7 +21,7 @@ func New(apiKey string, modelString string) *Client {
 	}
 }
 
-func (c *Client) message(prompt string) (*mistral.ChatCompletionResponse, error) {
+func (c *Client) message(prompt string) (string, error) {
 	History = append(History, mistral.ChatMessage{
 		Role:    "user",
 		Content: prompt,
@@ -32,12 +32,12 @@ func (c *Client) message(prompt string) (*mistral.ChatCompletionResponse, error)
 		nil,
 	)
 	if err != nil {
-		return nil, err
+		return "", err
 	}
 	History = append(History, mistral.ChatMessage{
 		Role:    res.Choices[0].Message.Role,
 		Content: res.Choices[0].Message.Content,
 	})
 
-	return res, nil
+	return res.Choices[0].Message.Content, nil
 }
