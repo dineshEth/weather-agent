@@ -11,13 +11,6 @@ import (
 )
 
 func main() {
-	// city := "london"
-	// data, err := WeatherOfACity(city)
-	// if err != nil {
-	// 	log.Fatal("city weather fail:", err)
-	// }
-
-	// fmt.Println(city, ":", data)
 	for false {
 		scanner := bufio.NewScanner(os.Stdin)
 		fmt.Print("user: ")
