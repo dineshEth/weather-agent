@@ -11,10 +11,17 @@ import (
 )
 
 func main() {
+	scanner := bufio.NewScanner(os.Stdin)
+	if scanner.Err() != nil {
+		panic("Scanner break")
+	}
+
 	for false {
-		scanner := bufio.NewScanner(os.Stdin)
 		fmt.Print("user: ")
-		scanner.Scan()
+		if !scanner.Scan() {
+			break
+		}
+
 		prompt := scanner.Text()
 
 		if strings.ToLower(prompt) == "quit" || strings.ToLower(prompt) == "exit" {
