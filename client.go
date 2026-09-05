@@ -21,7 +21,7 @@ func New(apiKey string, modelString string) *Client {
 	}
 }
 
-func (c *Client) message(prompt string) (string, error) {
+func (c *Client) chatMessage(prompt string) (string, error) {
 	History = append(History, mistral.ChatMessage{
 		Role:    "user",
 		Content: prompt,
