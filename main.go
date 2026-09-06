@@ -16,7 +16,7 @@ func main() {
 		panic("Scanner break")
 	}
 
-	for false {
+	for true {
 		fmt.Print("user: ")
 		if !scanner.Scan() {
 			break

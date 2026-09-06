@@ -1,6 +1,8 @@
 package main
 
 import (
+	"log"
+
 	mistral "github.com/gage-technologies/mistral-go"
 )
 
@@ -26,12 +28,22 @@ func (c *Client) chatMessage(prompt string) (string, error) {
 		Role:    "user",
 		Content: prompt,
 	})
+
 	res, err := c.MistralClient.Chat(
 		c.Model,
 		History,
-		nil,
+		&mistral.ChatRequestParams{
+			Tools:          tools,
+			TopP:           0.2,
+			Temperature:    0.2,
+			MaxTokens:      5000,
+			SafePrompt:     false,
+			ToolChoice:     "auto",
+			ResponseFormat: mistral.ResponseFormatText,
+		},
 	)
 	if err != nil {
+		log.Fatal("Error, occur:", err)
 		return "", err
 	}
 	History = append(History, mistral.ChatMessage{
@@ -40,4 +52,35 @@ func (c *Client) chatMessage(prompt string) (string, error) {
 	})
 
 	return res.Choices[0].Message.Content, nil
+}
+
+// =========================
+// Mistral tools
+// =========================
+
+var tools = []mistral.Tool{
+	{
+		Type: "function",
+
+		Function: mistral.Function{
+			Name: "read_file",
+
+			Description: "Read the contents of a file.",
+
+			Parameters: map[string]interface{}{
+				"type": "object",
+
+				"properties": map[string]interface{}{
+					"path": map[string]interface{}{
+						"type":        "string",
+						"description": "The path of the file to read.",
+					},
+				},
+
+				"required": []string{
+					"path",
+				},
+			},
+		},
+	},
 }
